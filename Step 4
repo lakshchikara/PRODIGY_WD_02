@@ -1,0 +1,3 @@
+prompt = "a futuristic city at night with flying cars"
+image = pipe(prompt).images[0]
+display(image)
