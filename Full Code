@@ -1,0 +1,19 @@
+!pip install diffusers transformers accelerate scipy safetensors
+
+from huggingface_hub import notebook_login
+notebook_login()
+
+from diffusers import StableDiffusionPipeline
+import torch
+
+pipe = StableDiffusionPipeline.from_pretrained(
+    "runwayml/stable-diffusion-v1-5", 
+    torch_dtype=torch.float16,          
+    use_safetensors=True
+).to("cuda")                            
+
+
+prompt = "cyberpunk cat with neon eyes"
+image = pipe(prompt).images[0]
+display(image)
+
